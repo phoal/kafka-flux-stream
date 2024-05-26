@@ -1,0 +1,50 @@
+
+
+spring:
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    #bootstrap-servers: ${KAFKA_BOOTSTRAP_BROKERS:localhost:29092}
+    bootstrap-servers: localhost:9092
+    properties:
+      security.protocol: "PLAINTEXT"
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      properties:
+        max.partition.fetch.bytes: 10485760
+      group-id: phoal.kafkaflux
+  main:
+    allow-bean-definition-overriding: true
+  r2dbc:
+    url: r2dbc:postgresql://hearty-penguin-6660.6xw.aws-ap-southeast-1.cockroachlabs.cloud:26257/postgres?sslmode=verify-full
+    username: phoal
+    password: Snl6wzCJWsWL4BD3-xuB5w
+    properties:
+      options:
+        logLevel=debug:
+
+server:
+  port: 8083
+  error:
+    include-stacktrace: always
+
+management:
+  endpoint:
+    info:
+      enabled: true
+      git:
+        mode: "full"
+    health:
+      enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    phoal:
+      kafkaflux: DEBUG
