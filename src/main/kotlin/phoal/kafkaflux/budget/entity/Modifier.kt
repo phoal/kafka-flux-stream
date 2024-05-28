@@ -1,4 +1,4 @@
-package phoal.kafkaflux.finance.entity
+package phoal.kafkaflux.budget.entity
 
 
 
