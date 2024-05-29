@@ -63,7 +63,9 @@ configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 		 LIQUIBASE_SCHEMA_NAME=message;LIQUIBASE_CHANGELOG_FILE=db-changelog/message-master.xml;LIQUIBASE_DB_USERNAME=phoal;LIQUIBASE_DB_PASSWORD=Snl6wzCJWsWL4BD3-xuB5w
 
 	 * kafka docker
-	 	cd Kafka/kafka_2.13-3.7.0/bin
+	 	cd ~/Kafka/kafka_2.13-3.7.0/bin
+		./zookeeper-server-start.sh ../config/zookeeper.properties
+		./kafka-server-start.sh ../config/server.properties
 
 	 * init
 		./kafka-topics.sh --create --topic kafka-message --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1

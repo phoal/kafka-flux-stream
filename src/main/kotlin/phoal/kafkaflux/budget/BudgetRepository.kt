@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository
 import phoal.kafkaflux.budget.entity.Budget
 
 @Repository
-interface BudgetRepository : ReactiveCrudRepository<Budget, String>
+interface BudgetRepository : ReactiveCrudRepository<Budget, Long>

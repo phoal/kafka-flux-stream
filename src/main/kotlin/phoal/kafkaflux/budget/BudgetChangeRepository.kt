@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 import phoal.kafkaflux.budget.entity.BudgetChange
 
 @Repository
-interface BudgetChangeRepository : ReactiveCrudRepository<BudgetChange, String> {
+interface BudgetChangeRepository: ReactiveCrudRepository<BudgetChange, Long> {
 }

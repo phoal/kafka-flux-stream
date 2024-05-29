@@ -7,9 +7,8 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 @Service
-class MessageHandler(
+class MessageDispatcer(
     final val connectableFlux: ConnectableFlux<Message>,
-    messageRepository: MessageRepository,
     messageService: MessageService,
 ) {
     val handlerFlux = connectableFlux

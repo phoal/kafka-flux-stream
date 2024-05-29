@@ -1,5 +1,6 @@
 package phoal.kafkaflux.message
 
+import phoal.kafkaflux.core.EventType
 import java.time.Instant
 import java.util.*
 
@@ -7,7 +8,7 @@ data class MessageDTO(
     val uuid: UUID,
     val timeStamp: Instant,
     val sender: String,
-    val eventType: String,
+    val eventType: EventType,
 //    @JdbcTypeCode(SqlTypes.JSON)
     val content: String,
     val status: Int,
