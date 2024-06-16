@@ -27,7 +27,6 @@ class MessageService(val reactiveKafkaProducerTemplate: ReactiveKafkaProducerTem
 
     fun customInsert(message: Message): Mono<Message> {
         val (uuid, timeStamp, sender, eventType, content, status) = message
-//        return repository.customInsert(message)
         return repository.customInsert(  uuid,   timeStamp,   sender,   eventType,   content,   status)
     }
 }

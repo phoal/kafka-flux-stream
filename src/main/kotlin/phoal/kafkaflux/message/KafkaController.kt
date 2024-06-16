@@ -3,6 +3,8 @@ package phoal.kafkaflux.message
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
+import phoal.kafkaflux.message.utility.MessageRequest
+import phoal.kafkaflux.message.utility.UtilityService
 import reactor.core.publisher.ConnectableFlux
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -10,7 +12,11 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/kafka")
-class KafkaController(val connectableFlux: ConnectableFlux<Message>, val messageService: MessageService) {
+class KafkaController(
+    val connectableFlux: ConnectableFlux<Message>,
+    val messageService: MessageService,
+    val utility: UtilityService,)
+{
 
 //    fun receiverOptionsForTopic(): ReceiverOptions<String, Message> {
 //
@@ -68,6 +74,19 @@ class KafkaController(val connectableFlux: ConnectableFlux<Message>, val message
 //        try {
             //Sending the message to kafka topic queue
         messageService.send(message)
+//        } catch (e: InterruptedException) {
+//            throw RuntimeException(e)
+//        } catch (e: ExecutionException) {
+//            throw RuntimeException(e)
+//        }
+    }
+
+    @PostMapping(value = ["/sendMessages"], consumes = ["application/json"], produces = ["application/json"])
+    @ResponseBody
+    fun sendMessages(@RequestBody requests: List<MessageRequest>) {
+//        try {
+        //Sending the message to kafka topic queue
+        utility.send(requests)
 //        } catch (e: InterruptedException) {
 //            throw RuntimeException(e)
 //        } catch (e: ExecutionException) {

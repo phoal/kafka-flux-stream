@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import java.time.Instant
 import java.util.*
 
-@Table(schema = "finance")
+@Table(schema = "budget")
 data class BudgetChange(
     @Id
     val id: Long? = null,
@@ -14,6 +14,6 @@ data class BudgetChange(
     val category: Category,
     val modifier: Modifier,
     val amount: BigDecimal,
-    val timestamp: Instant,
+    val timeStamp: Instant,
     val uuid: UUID,
 )

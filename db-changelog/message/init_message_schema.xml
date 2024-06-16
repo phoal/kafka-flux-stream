@@ -26,4 +26,54 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="budget" author="budget">
+        <createTable tableName="budget" schemaName="budget">
+            <column name="id" autoIncrement="true" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="money">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="budget_change" author="budget">
+        <createTable tableName="budget_change" schemaName="budget">
+            <column name="id" autoIncrement="true" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="budget" type="integer">
+                <constraints nullable="false" foreignKeyName="fk_budget_budget_change" references="budget.budget(id)"/>
+            </column>
+            <column name="category" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifier" type="string">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
