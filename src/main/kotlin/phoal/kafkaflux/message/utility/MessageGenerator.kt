@@ -16,10 +16,6 @@ import java.util.*
 class MessageGenerator(
     val mapper: Mapper
 ) {
-    fun prepare(request: List<EventType>): List<Message> {
-        return request.map { generate(it) }
-    }
-
     fun generate(eventType: EventType): Message {
         return when (eventType)  {
             EventType.CreateBudget -> generateMessage(eventType, mapper.serialize(generateBudget()))

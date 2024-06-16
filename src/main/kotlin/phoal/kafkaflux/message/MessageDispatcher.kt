@@ -10,7 +10,7 @@ import java.util.logging.Logger
 
 @Service
 class MessageDispatcher(
-    final val connectableFlux: ConnectableFlux<Message>,
+    connectableFlux: ConnectableFlux<Message>,
     override val handlers: Set<Handler>,
     messageService: MessageService,
     logger: Logger,

@@ -1,9 +1,7 @@
 package phoal.kafkaflux.core
 
-import org.springframework.data.repository.Repository
 import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import org.springframework.stereotype.Service
-import phoal.kafkaflux.log.LogUtility
 import phoal.kafkaflux.message.Message
 import java.util.logging.Level
 import java.util.logging.Logger
