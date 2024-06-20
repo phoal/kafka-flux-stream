@@ -1,6 +1,7 @@
-package phoal.kafkaflux.budget.entity
+package phoal.kafkaflux.budget.common
 
 enum class Category {
+    General,
     Grocery,
     FreshProduce,
     Sport,

@@ -1,4 +1,4 @@
-package phoal.kafkaflux.budget.entity
+package phoal.kafkaflux.budget.common
 
 
 

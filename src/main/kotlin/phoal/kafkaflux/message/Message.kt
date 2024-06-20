@@ -11,7 +11,7 @@ data class Message(
     @Id
     val uuid: UUID,
     val timeStamp: Instant,
-    val sender: String,
+    val sender: Sender,
     val eventType: EventType,
     val content: String,
     val status: Int,

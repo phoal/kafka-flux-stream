@@ -1,13 +1,14 @@
 package phoal.kafkaflux.message.utility
 
 import org.springframework.stereotype.Component
-import phoal.kafkaflux.budget.entity.Budget
-import phoal.kafkaflux.budget.entity.BudgetChange
-import phoal.kafkaflux.budget.entity.Category
-import phoal.kafkaflux.budget.entity.Modifier
+import phoal.kafkaflux.budget.write.entity.Budget
+import phoal.kafkaflux.budget.write.entity.BudgetChange
+import phoal.kafkaflux.budget.common.Category
+import phoal.kafkaflux.budget.common.Modifier
 import phoal.kafkaflux.core.EventType
 import phoal.kafkaflux.core.Mapper
 import phoal.kafkaflux.message.Message
+import phoal.kafkaflux.message.Sender
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*
@@ -27,7 +28,7 @@ class MessageGenerator(
 
 fun generateBudget(): Budget {
     return Budget(
-        user = 1L,
+        userId = 1L,
         name = "Test",
         category = Category.Grocery,
         year = 2024,
@@ -50,7 +51,7 @@ fun generateMessage(eventType: EventType, content: String): Message {
     return Message(
         uuid = UUID.randomUUID(),
         eventType = eventType,
-        sender = "phoal",
+        sender = Sender.User,
         status = 100,
         timeStamp = Instant.now(),
         content = content,

@@ -15,7 +15,7 @@ interface MessageRepository : ReactiveCrudRepository<Message, String> {
     fun customInsert(
         uuid: UUID,
         timeStamp: Instant,
-        sender: String,
+        sender: Sender,
         eventType: EventType,
         content: String,
         status: Int

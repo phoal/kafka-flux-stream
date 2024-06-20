@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="budget_summary" author="budget_read">
+        <createTable tableName="budget_summary" schemaName="budget_read">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="jsonb">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

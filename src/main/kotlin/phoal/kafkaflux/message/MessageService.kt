@@ -2,9 +2,11 @@ package phoal.kafkaflux.message
 
 import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate
 import org.springframework.stereotype.Service
+import phoal.kafkaflux.core.EventType
 import phoal.kafkaflux.message.Config.MESSAGE_TOPIC
 import reactor.core.publisher.Mono
 import reactor.kafka.sender.SenderResult
+import java.util.*
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -21,6 +23,11 @@ class MessageService(val reactiveKafkaProducerTemplate: ReactiveKafkaProducerTem
             .subscribe()
     }
 
+    fun notifyProcessed(message: Message): Mono<SenderResult<Void>> {
+        logger.log(Level.INFO, """Notify processed: $message""")
+        return reactiveKafkaProducerTemplate.send(MESSAGE_TOPIC, message.notification())
+    }
+
     fun save(message: Message): Mono<Message> {
         return repository.save(message.copy())
     }
@@ -29,4 +36,16 @@ class MessageService(val reactiveKafkaProducerTemplate: ReactiveKafkaProducerTem
         val (uuid, timeStamp, sender, eventType, content, status) = message
         return repository.customInsert(  uuid,   timeStamp,   sender,   eventType,   content,   status)
     }
+}
+
+fun Message.notification(): Message {
+    val eventType = when (this.eventType) {
+        EventType.UpdateBudget -> EventType.BudgetUpdated
+        else -> this.eventType
+    }
+    return this.copy(
+        uuid = UUID.randomUUID(),
+        eventType = eventType,
+        sender = Sender.System,
+    )
 }
